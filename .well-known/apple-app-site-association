@@ -1,0 +1,11 @@
+{
+  "applinks": {
+      "apps": [],
+      "details": [
+      {
+        "appID": "G9G48UF3H3.app.archonlabs.snapfy",
+        "paths": ["*"]
+      }
+    ]
+  }
+}
