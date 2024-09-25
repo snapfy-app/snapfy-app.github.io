@@ -1,14 +1,11 @@
 [
   {
-    "relation": [
-      "delegate_permission/common.handle_all_urls"
-    ],
+    "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
       "package_name": "app.archonlabs.snapfy",
-      "sha256_cert_fingerprints": [
-        ""
-      ]
+      "sha256_cert_fingerprints":
+        ["0E:56:8C:66:BE:5B:7C:1E:98:31:50:0E:20:BA:F3:B2:00:21:A6:05:33:FB:0C:79:F0:FF:61:A6:B0:F2:BF:1C"]
     }
   }
 ]
