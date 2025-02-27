@@ -4,30 +4,36 @@
     <script>
       const userAgent = navigator.userAgent;
 
-      const isIOS = /iPad|iPhone|iPod/.test(userAgent);
+      const isIOS = /iPhone|iPad|iPod/.test(userAgent);
       const isAndroid = /Android/.test(userAgent);
+      const isMac = /Mac OS X/.test(userAgent);
+      const isWindows = /Windows/.test(userAgent);
 
-      const currentPageUrl = window.location.href.replace("https://", "");
+      const currentPageUrl = window.location.href.replace('https://', '');
 
-      let customUrl = "";
-      let storeUrl = "";
+      let deepLinkUrl = '';
+      let storeUrl = '';
 
-      if (isIOS) {
-        customUrl = `snapfy-app://${currentPageUrl}`;
-        storeUrl = "https://apps.apple.com/app/id6698855028";
-      } else if (isAndroid) {
-        const scheme = "snapfy-app";
-        const package = "app.archonlabs.snapfy";
+      if (isIOS || isMac) {
+        deepLinkUrl = `snapfy-app://${currentPageUrl}`;
+        storeUrl = 'https://apps.apple.com/app/id6698855028';
+      } else if (isAndroid || isWindows) {
+        const scheme = 'snapfy-app';
+        const package = 'app.archonlabs.snapfy';
 
-        customUrl = `intent://${currentPageUrl}#Intent;scheme=${scheme};package=${package};end`;
+        deepLinkUrl = `intent://${currentPageUrl}#Intent;scheme=${scheme};package=${package};end`;
         storeUrl = `https://play.google.com/store/apps/details?id=${package}`;
       }
 
-      window.location.href = customUrl;
+      if (isIOS || isAndroid) {
+        window.location.href = deepLinkUrl;
 
-      setTimeout(() => {
-        window.location.href = storeUrl;
-      }, 2000);
+        setTimeout(() => {
+          window.location.href = storeUrl;
+        }, 1000);
+      } else if (isMac || isWindows) {
+        window.open(storeUrl, '_self');
+      }
     </script>
   </body>
 </html>
